@@ -3,14 +3,14 @@ import type { Client } from "@/clients/interfaces/client";
 import clientsApi from '../../api/clients-api';
 import { useClientStore } from '@/store/clients';
 import { storeToRefs } from 'pinia';
-import { watch, computed } from 'vue';
+import { watch } from 'vue';
 
 
 const getClients = async( page: number ):Promise<Client[]> => {
     
-    await new Promise( resolve => {
-        setTimeout( () => resolve(true), 1500)
-    });
+    // await new Promise( resolve => {
+    //     setTimeout( () => resolve(true), 1500)
+    // });
     
     const { data } = await clientsApi.get<Client[]>(`/clients?_page=${ page }`);
     return data;
@@ -30,7 +30,7 @@ const useClients = () => {
     watch( data, clients => {
         if( clients )
             store.setClients( clients );
-    });
+    }, { immediate: true });
 
     return {
         // State Properties
@@ -47,9 +47,9 @@ const useClients = () => {
         getPage: store.setPage,
 
         //Getter
-        totalPageNumbers: computed(
-            () => [ ...new Array(totalPages.value)].map( (value, index) => index + 1)
-        )
+        // totalPageNumbers: computed(
+        //     () => [ ...new Array(totalPages.value)].map( (value, index) => index + 1)
+        // )
 
     }
 };

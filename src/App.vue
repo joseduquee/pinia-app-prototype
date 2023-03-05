@@ -7,7 +7,7 @@ import IconPinia from '@/shared/components/icons/IconPinia.vue';
   <header>
     <IconPinia />
     <div class="wrapper">
-      <h3>Pinia - ejercicios</h3>
+      <h3>Pinia - Demo</h3>
 
       <nav>
         <RouterLink to="/">Counter Options</RouterLink>
